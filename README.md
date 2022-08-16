@@ -24,16 +24,18 @@ Please add ```mask = None``` [here](https://github.com/thaisonngn/pynn/blob/mast
 polygraphy surgeon sanitize encoder.onnx --fold-constants -o encoder_folded.onnx
 ```
 ```
-trtexec --onnx=encoder_folder.onnx \
+trtexec --onnx=encoder_folded.onnx \
  --minShapes=seqs:32x1000x40,masks:32x1000 \
  --optShapes=seqs:32x1000x40,masks:32x1000 \
  --maxShapes=seqs:32x1000x40,masks:32x1000 \
 --saveEngine=encoder_fp32.trt
 ```
+
 ```
 trtexec --onnx=encoder_folded.onnx \
- --minShapes=seqs:32x1000x40,masks:32x1000 \ 
+ --minShapes=seqs:32x1000x40,masks:32x1000 \
  --optShapes=seqs:32x1000x40,masks:32x1000 \
  --maxShapes=seqs:32x1000x40,masks:32x1000 \
- --saveEngine=encoder_fp16.trt --fp16
+--saveEngine=encoder_fp16.trt \
+--fp16
 ```
